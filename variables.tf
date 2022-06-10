@@ -259,12 +259,6 @@ variable "k3s_tls_san" {
   description = "Sets k3s tls-san flag to this value instead of the default load balancer"
 }
 
-variable "k3s_deploy_traefik" {
-  default     = true
-  type        = bool
-  description = "Configures whether to deploy traefik ingress or not"
-}
-
 variable "rancher2_token_key" {
   default     = null
   type        = string
@@ -278,7 +272,7 @@ variable "agent_k3s_exec" {
 }
 
 variable "server_k3s_exec" {
-  default     = "--disable traefik --disable servicelb"
+  default     = "--disable traefik --disable servicelb --no-deploy local-storage"
   type        = string
   description = "exec args to pass to k3s server"
 }
