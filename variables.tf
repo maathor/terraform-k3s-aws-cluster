@@ -104,7 +104,7 @@ variable "agent_instance_ssh_user" {
 
 variable "certmanager_version" {
   type        = string
-  default     = "1.5.4"
+  default     = "1.8.0"
   description = "Version of cert-manager to install"
 }
 
@@ -138,7 +138,7 @@ variable "private_subnets" {
 }
 
 variable "install_k3s_version" {
-  default     = "1.21.4+k3s1"
+  default     = "1.22.9+k3s1"
   type        = string
   description = "Version of K3S to install"
 }
@@ -278,7 +278,7 @@ variable "agent_k3s_exec" {
 }
 
 variable "server_k3s_exec" {
-  default     = null
+  default     = "--disable traefik --disable servicelb"
   type        = string
   description = "exec args to pass to k3s server"
 }
@@ -335,4 +335,15 @@ variable "rancher_token_update" {
   default     = false
   description = "Regenerate admin token."
   type        = bool
+}
+variable "install_nginx" {
+  default     = true
+  description = "Install ingress-nginx"
+  type        = bool
+}
+
+variable "nginx_version" {
+  default     = "4.1.3"
+  description = "Version of ingress-nginx helm chart to install"
+  type        = string
 }

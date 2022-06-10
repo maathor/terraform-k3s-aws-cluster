@@ -81,6 +81,8 @@ data "cloudinit_config" "k3s_server" {
         letsencrypt_environment = local.letsencrypt_environment,
         rancher_version         = local.rancher_version,
         rancher_hostname        = "${local.subdomain}.${local.domain}",
+        install_nginx           = local.install_nginx,
+        nginx_version           = local.nginx_version,
         install_rancher         = local.install_rancher,
         install_certmanager     = local.install_certmanager,
         rancher_password        = local.rancher_password,
