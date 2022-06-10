@@ -67,8 +67,7 @@ data "cloudinit_config" "k3s_server" {
         k3s_datastore_endpoint = local.k3s_datastore_endpoint,
         k3s_datastore_cafile   = local.k3s_datastore_cafile,
         k3s_disable_agent      = local.k3s_disable_agent,
-        k3s_tls_san            = local.k3s_tls_san,
-        k3s_deploy_traefik     = local.k3s_deploy_traefik
+        k3s_tls_san            = local.k3s_tls_san
     })
   }
 
@@ -127,8 +126,7 @@ data "cloudinit_config" "k3s_agent" {
         k3s_datastore_endpoint = local.k3s_datastore_endpoint,
         k3s_datastore_cafile   = local.k3s_datastore_cafile,
         k3s_disable_agent      = local.k3s_disable_agent,
-        k3s_tls_san            = local.k3s_tls_san,
-        k3s_deploy_traefik     = local.k3s_deploy_traefik
+        k3s_tls_san            = local.k3s_tls_san
     })
   }
 }

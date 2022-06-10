@@ -70,6 +70,3 @@ spec:
 EOF
 %{ endif }
 %{ endif }
-
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION='v1.22.9+k3s1' INSTALL_K3S_EXEC='--tls-san rancher-mgmt-int-regular-e219418f57fe582a.elb.us-east-1.amazonaws.com --no-deploy local-storage --disable traefik --disable servicelb' K3S_TOKEN='Tickled25Breaded10siberia' K3S_DATASTORE_CAFILE='/srv/rds-combined-ca-bundle.pem' K3S_DATASTORE_ENDPOINT='postgres://k3s:claimed30Whitman@rancher-mgmt-20211028044607251000000003.cluster-cijvgx1emidk.us-east-1.rds.amazonaws.com/k3s'  sh -
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION='v1.22.9+k3s1' INSTALL_K3S_EXEC='' K3S_TOKEN='Tickled25Breaded10siberia'  K3S_URL='https://rancher-mgmt-int-regular-e219418f57fe582a.elb.us-east-1.amazonaws.com:6443' sh -

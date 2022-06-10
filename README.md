@@ -100,7 +100,6 @@ No modules.
 | <a name="input_k3s_cluster_secret"></a> [k3s\_cluster\_secret](#input\_k3s\_cluster\_secret) | Override to set k3s cluster registration secret | `string` | `null`                              | no |
 | <a name="input_k3s_datastore_cafile"></a> [k3s\_datastore\_cafile](#input\_k3s\_datastore\_cafile) | Location to download RDS CA Bundle | `string` | `"/srv/rds-combined-ca-bundle.pem"` | no |
 | <a name="input_k3s_datastore_endpoint"></a> [k3s\_datastore\_endpoint](#input\_k3s\_datastore\_endpoint) | Storage Backend for K3S cluster to use. Valid options are 'sqlite' or 'postgres' | `string` | `"sqlite"`                          | no |
-| <a name="input_k3s_deploy_traefik"></a> [k3s\_deploy\_traefik](#input\_k3s\_deploy\_traefik) | Configures whether to deploy traefik ingress or not | `bool` | `true`                              | no |
 | <a name="input_k3s_disable_agent"></a> [k3s\_disable\_agent](#input\_k3s\_disable\_agent) | Whether to run the k3s agent on the same host as the k3s server | `bool` | `false`                             | no |
 | <a name="input_k3s_tls_san"></a> [k3s\_tls\_san](#input\_k3s\_tls\_san) | Sets k3s tls-san flag to this value instead of the default load balancer | `string` | `null`                              | no |
 | <a name="input_letsencrypt_email"></a> [letsencrypt\_email](#input\_letsencrypt\_email) | LetsEncrypt email address to use | `string` | `"none@none.com"`                   | no |
