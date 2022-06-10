@@ -20,3 +20,11 @@ output "k3s_cluster_secret" {
   value     = local.k3s_cluster_secret
   sensitive = true
 }
+
+output "agent_role_arn" {
+  value = aws_iam_role.agent_role.arn
+}
+
+output "server_role_arn" {
+  value = aws_iam_role.server_role.arn
+}

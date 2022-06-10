@@ -108,6 +108,10 @@ resource "aws_launch_template" "k3s_server" {
     }
   }
 
+  iam_instance_profile {
+    arn = aws_iam_instance_profile.server_instance_profile.arn
+  }
+
   network_interfaces {
     delete_on_termination = true
     security_groups       = concat([aws_security_group.self.id, aws_security_group.database.id], var.extra_server_security_groups)
@@ -140,6 +144,10 @@ resource "aws_launch_template" "k3s_agent" {
       volume_type = local.agent_volume_type
       volume_size = "50"
     }
+  }
+
+  iam_instance_profile {
+    arn = aws_iam_instance_profile.agent_instance_profile.arn
   }
 
   network_interfaces {

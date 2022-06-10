@@ -341,3 +341,8 @@ variable "nginx_version" {
   description = "Version of ingress-nginx helm chart to install"
   type        = string
 }
+
+variable "enable_ssm" {
+  default     = false
+  type        = bool
+}
