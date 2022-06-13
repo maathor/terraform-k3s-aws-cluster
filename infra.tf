@@ -142,7 +142,8 @@ resource "aws_launch_template" "k3s_agent" {
     ebs {
       encrypted   = true
       volume_type = local.agent_volume_type
-      volume_size = "50"
+      volume_size = local.agent_volume_size
+      iops        = var.agent_volume_iops
     }
   }
 

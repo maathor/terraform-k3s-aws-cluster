@@ -34,6 +34,7 @@ locals {
   server_volume_type             = var.server_volume_type
   agent_instance_type            = var.agent_instance_type
   agent_volume_type              = var.agent_volume_type
+  agent_volume_size              = var.agent_volume_size
   agent_image_id                 = var.agent_image_id != null ? var.agent_image_id : data.aws_ami.ubuntu.id
   server_image_id                = var.server_image_id != null ? var.server_image_id : data.aws_ami.ubuntu.id
   aws_azs                        = var.aws_azs

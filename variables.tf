@@ -319,6 +319,18 @@ variable "agent_volume_type" {
   type        = string
 }
 
+variable "agent_volume_size" {
+  default     = 50
+  description = "Volume Size for K3S Agent nodes"
+  type        = number
+}
+
+variable "agent_volume_iops" {
+  default     = null
+  description = "Volume IOPS for K3S Agent nodes"
+  type        = number
+}
+
 variable "rancher_features" {
   default     = ""
   description = "Comma-separated list of feature flags to enable in Rancher"
