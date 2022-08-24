@@ -355,6 +355,11 @@ variable "nginx_version" {
 }
 
 variable "enable_ssm" {
-  default     = false
-  type        = bool
+  default = false
+  type    = bool
+}
+
+variable "tags" {
+  default = {}
+  type    = map(string)
 }

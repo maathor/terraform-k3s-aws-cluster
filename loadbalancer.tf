@@ -5,6 +5,8 @@ resource "aws_lb" "server-lb" {
   internal           = true
   load_balancer_type = "network"
   subnets            = local.private_subnets
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "server-port_6443" {
@@ -16,6 +18,8 @@ resource "aws_lb_listener" "server-port_6443" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.server-6443.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "server-6443" {
@@ -23,6 +27,8 @@ resource "aws_lb_target_group" "server-6443" {
   port     = 6443
   protocol = "TCP"
   vpc_id   = data.aws_vpc.default.id
+
+  tags = var.tags
 }
 
 
@@ -33,9 +39,9 @@ resource "aws_lb" "lb" {
   load_balancer_type = "network"
   subnets            = local.public_subnets
 
-  tags = {
+  tags = merge({
     "kubernetes.io/cluster/${local.name}" = ""
-  }
+  }, var.tags)
 }
 
 resource "aws_lb_listener" "port_443" {
@@ -48,6 +54,8 @@ resource "aws_lb_listener" "port_443" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.agent-443.0.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "port_80" {
@@ -60,6 +68,8 @@ resource "aws_lb_listener" "port_80" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.agent-80.0.arn
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "agent-443" {
@@ -80,9 +90,9 @@ resource "aws_lb_target_group" "agent-443" {
     matcher             = "200-399"
   }
 
-  tags = {
+  tags = merge({
     "kubernetes.io/cluster/${local.name}" = ""
-  }
+  }, var.tags)
 }
 
 resource "aws_lb_target_group" "agent-80" {
@@ -103,7 +113,7 @@ resource "aws_lb_target_group" "agent-80" {
     matcher             = "200-399"
   }
 
-  tags = {
+  tags = merge({
     "kubernetes.io/cluster/${local.name}" = ""
-  }
+  }, var.tags)
 }

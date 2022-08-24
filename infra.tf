@@ -5,6 +5,7 @@
 resource "aws_security_group" "ingress" {
   name   = "${local.name}-ingress"
   vpc_id = data.aws_vpc.default.id
+  tags   = var.tags
 }
 
 resource "aws_security_group_rule" "ingress_http" {
@@ -46,6 +47,8 @@ resource "aws_security_group_rule" "ingress_egress_all" {
 resource "aws_security_group" "self" {
   name   = "${local.name}-self"
   vpc_id = data.aws_vpc.default.id
+  tags   = var.tags
+
 }
 
 resource "aws_security_group_rule" "self_self" {
@@ -69,6 +72,8 @@ resource "aws_security_group_rule" "self_k3s_server" {
 resource "aws_security_group" "database" {
   name   = "${local.name}-database"
   vpc_id = data.aws_vpc.default.id
+
+  tags = var.tags
 }
 
 resource "aws_security_group_rule" "database_self" {
@@ -117,9 +122,9 @@ resource "aws_launch_template" "k3s_server" {
     security_groups       = concat([aws_security_group.self.id, aws_security_group.database.id], var.extra_server_security_groups)
   }
 
-  tags = {
+  tags = merge({
     Name = "${local.name}-server"
-  }
+  }, var.tags)
 
   tag_specifications {
     resource_type = "instance"
@@ -156,9 +161,9 @@ resource "aws_launch_template" "k3s_agent" {
     security_groups       = concat([aws_security_group.ingress.id, aws_security_group.self.id], var.extra_agent_security_groups)
   }
 
-  tags = {
+  tags = merge({
     Name = "${local.name}-agent"
-  }
+  }, var.tags)
 
   tag_specifications {
     resource_type = "instance"
@@ -186,6 +191,8 @@ resource "aws_autoscaling_group" "k3s_server" {
   }
 
   depends_on = [aws_rds_cluster_instance.k3s]
+
+  tags = var.tags
 }
 
 resource "aws_autoscaling_group" "k3s_agent" {
@@ -204,6 +211,7 @@ resource "aws_autoscaling_group" "k3s_agent" {
     id      = aws_launch_template.k3s_agent.id
     version = "$Latest"
   }
+  tags = var.tags
 }
 
 #############################
@@ -255,6 +263,8 @@ resource "aws_rds_cluster" "k3s" {
   deletion_protection       = false
   skip_final_snapshot       = local.skip_final_snapshot ? true : false
   final_snapshot_identifier = local.skip_final_snapshot ? null : "${local.name}-final-snapshot"
+
+  tags = var.tags
 }
 
 resource "aws_rds_cluster_instance" "k3s" {
@@ -265,6 +275,8 @@ resource "aws_rds_cluster_instance" "k3s" {
   instance_class       = local.db_instance_type
   db_subnet_group_name = aws_db_subnet_group.private.0.id
   ca_cert_identifier   = local.rds_ca_cert_identifier
+
+  tags = var.tags
 }
 
 #############################
