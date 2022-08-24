@@ -191,8 +191,6 @@ resource "aws_autoscaling_group" "k3s_server" {
   }
 
   depends_on = [aws_rds_cluster_instance.k3s]
-
-  tags = var.tags
 }
 
 resource "aws_autoscaling_group" "k3s_agent" {
@@ -211,7 +209,6 @@ resource "aws_autoscaling_group" "k3s_agent" {
     id      = aws_launch_template.k3s_agent.id
     version = "$Latest"
   }
-  tags = var.tags
 }
 
 #############################
