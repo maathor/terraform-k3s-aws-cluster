@@ -28,3 +28,19 @@ output "agent_role_arn" {
 output "server_role_arn" {
   value = aws_iam_role.server_role.arn
 }
+
+output "ext_loadbalancer_dns_name" {
+  value = local.create_external_nlb == 1 ? aws_lb.lb[0].dns_name : ""
+}
+
+output "ext_loadbalancer_arn" {
+  value = local.create_external_nlb == 1 ? aws_lb.lb[0].arn : ""
+}
+
+output "ext_loadbalancer_id" {
+  value = local.create_external_nlb == 1 ? aws_lb.lb[0].id : ""
+}
+
+output "ext_loadbalancer_zone_id" {
+  value = local.create_external_nlb == 1 ? aws_lb.lb[0].zone_id : ""
+}

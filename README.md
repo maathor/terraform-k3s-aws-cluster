@@ -1,8 +1,9 @@
 ### Terraform K3S AWS Cluster
 
 This module supports creating a k3s cluster with a postgres backend in AWS. It allows you to optionally install Rancher Server cert-manager, or import your K3S cluster into an existing Rancher Server.
+This module support SSM. For session management.
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
